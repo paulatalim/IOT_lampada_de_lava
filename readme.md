@@ -22,4 +22,4 @@
 
 ## Tinkercad
 
-- [Link do projeto no tinkercad]
+- [Link do projeto no tinkercad](https://www.tinkercad.com/things/4kXaNSLRbeD?sharecode=p3JFwybaUJIMXSC5MJte0VQfITPpRgQib_tJfDL0w-U)
