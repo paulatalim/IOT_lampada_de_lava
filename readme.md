@@ -17,6 +17,7 @@
 
 - [Sensor de moviemnto](./teste_pir/teste_pir.ino)
 - [Aquecedor de cartucho](./teste_rele/teste_rele.ino)
+- [Codigo com tempo sem delay](teste_tempo_sem_delay.ino)
 
 ## Código trabalho
 
