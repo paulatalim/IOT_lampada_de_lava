@@ -11,17 +11,16 @@
 
 ## Tarefas
 
-- [pdf das tarefas]()
+- [pdf das tarefas](orientacoes_do_trab.pdf)
+- [cronograma de entrega dos relatorios](cronograma.pdf)
 
 ## Codigos teste
 
-- [Sensor de moviemnto](./teste_pir/teste_pir.ino)
-- [Aquecedor de cartucho](./teste_rele/teste_rele.ino)
-- [Codigo com tempo sem delay](teste_tempo_sem_delay.ino)
-- [codigo do modulo de led](./teste_matrix_led/teste_matrix_led.ino)
+- [Sensor de movimento](./test/teste_pir.ino)
+- [Aquecedor de cartucho](./test/teste_aquecedor.ino)
+- [Codigo com tempo sem delay](./test/teste_tempo_sem_delay.ino)
+- [codigo do modulo de led](./test/teste_matrix_led.ino)
 - [video do cara explicando o modulo de leds](https://www.youtube.com/watch?v=VtIWN5SJDYo)
-
-## Código trabalho
 
 ## Tinkercad
 
