@@ -5,9 +5,9 @@
 #include <dht.h>
 
 /*** Definicoes para o MQTT ***/
-#define TOPICO_SUBSCRIBE_SISTEMA "lampadadelava/sensor/ligadesliga"
-#define TOPICO_SUBSCRIBE_LED_AUTOMATICO "lampadadelava/sensor/auto"
-#define TOPICO_SUBSCRIBE_LED_MANUAL "lampadadelava/sensor/ledcor"
+#define TOPICO_SUBSCRIBE_SISTEMA "lampadadelava/atuador/ligadesliga"
+#define TOPICO_SUBSCRIBE_LED_AUTOMATICO "lampadadelava/atuador/auto"
+#define TOPICO_SUBSCRIBE_LED_MANUAL "lampadadelava/atuador/ledcor"
 #define TOPICO_PUBLISH_TEMPERATURA "lampadalava/sensor/temperatura"
 #define TOPICO_PUBLISH_LUMINOSIDADE "lampadalava/sensor/luminosidade"
 #define TOPICO_PUBLISH_MOVIMENTO "lampadalava/sensor/movimento"
@@ -33,7 +33,7 @@ PubSubClient MQTT(espClient); // Instancia o Cliente MQTT passando o objeto espC
 #define pin 12 // LED
 
 int luminosidade;
-double temperatura;
+int temperatura;
 int movimento;
 bool modo_automatico_ativado = true;
 
@@ -272,7 +272,7 @@ void loop() {
     Serial.print("Valor do sensor de luminosidade = "); 
     Serial.println(luminosidade);
     sprintf(luminosidade_str, "%d", luminosidade);
-    MQTT.publish(TOPICO_PUBLISH_LUMINOSIDADE, luminosidade_str);
+    MQTT.publish(TOPICO_PUBLISH_LUMINOSIDADE, luminosidade_str, 1);
 
     //INFORMA O VALOR DO SENSOR DE TEMPERATURA
     temp.read11(SENSORTEMP); //LÊ AS INFORMAÇÕES DO SENSOR
@@ -280,7 +280,7 @@ void loop() {
     Serial.print("Valor do sensor de Temperatura = "); 
     Serial.println(temperatura , 0);
     sprintf (temperatura_str, "%d", temperatura);
-    MQTT.publish(TOPICO_PUBLISH_TEMPERATURA, temperatura_str); 
+    MQTT.publish(TOPICO_PUBLISH_TEMPERATURA, temperatura_str, 1); 
 
     //INFORMA O VALOR DO SENSOR DE MOVIMENTO
     movimento = digitalRead(SENSORMOV);
@@ -288,10 +288,10 @@ void loop() {
     if (movimento == HIGH) {
       time_start_mov = time_now;
       // time_start_color = time_now;
-      MQTT.publish(TOPICO_PUBLISH_MOVIMENTO, "1"); 
+      MQTT.publish(TOPICO_PUBLISH_MOVIMENTO, "1", 1); 
       Serial.println("1");
     } else {
-      MQTT.publish(TOPICO_PUBLISH_MOVIMENTO, "0"); 
+      MQTT.publish(TOPICO_PUBLISH_MOVIMENTO, "0", 1); 
       Serial.println("0");
     }
   }
@@ -321,5 +321,5 @@ void loop() {
     desligar_sistema();
   }
 
-  //MQTT.loop();
+  MQTT.loop();
 }
