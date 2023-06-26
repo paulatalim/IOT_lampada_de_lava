@@ -1,28 +1,55 @@
+/**
+ * LAMPADA DE LAVA
+
+ * Objetivo
+ *   Criacao de um sistema de controle de uma lampada de lava e que se comunica com um Broker
+ *
+ * Funcionalidades
+ * - Perceber a presença de uma pessoa para ligar ou desligar seu sistema
+ * - Captar a luminosidade do ambiente para regular a intensidade da sua luz RGB
+ * - Monitorar a temperatura, evitando a quebra do material e danos ao circuito
+ * - Configuracao da cor da luz RGB
+ * - Ligar ou desligar o sistema
+ * - Comunicacao com broker
+ * 
+ * Funcoes do sistema
+ *   void desligar_sistema ();
+ *   void led_modo_automatico ();
+ *   void initWiFi(void)
+ *   void initMQTT(void);
+ *   void mqtt_callback(char* topic, byte* payload, unsigned int length);
+ *   void reconnectMQTT(void);
+ *   void reconnectWiFi(void);
+ *   void VerificaConexoesWiFIEMQTT(void);
+ * 
+ * Autores do projeto
+ *   @author Ana Beatriz
+ *   @author Marcos Victor
+ *   @author Mariana Aram
+ *   @author Paula Talim
+ *   @author Yago Garzon
+ */
+
 #include <Adafruit_NeoPixel.h>
 #include <PubSubClient.h>
 #include <arduino.h>
 #include <WiFi.h>
-#include <dht.h>
+#include <DHT.h>
 
 /*** Definicoes para o MQTT ***/
-#define TOPICO_SUBSCRIBE_SISTEMA "lampadadelava/atuador/ligadesliga"
-#define TOPICO_SUBSCRIBE_LED_AUTOMATICO "lampadadelava/atuador/auto"
-#define TOPICO_SUBSCRIBE_LED_MANUAL "lampadadelava/atuador/ledcor"
+#define TOPICO_SUBSCRIBE_SISTEMA "lampadalava/atuador/ligadesliga"
+#define TOPICO_SUBSCRIBE_LED_AUTOMATICO "lampadalava/atuador/auto"
+#define TOPICO_SUBSCRIBE_LED_MANUAL "lampadalava/atuador/ledcor"
 #define TOPICO_PUBLISH_TEMPERATURA "lampadalava/sensor/temperatura"
 #define TOPICO_PUBLISH_LUMINOSIDADE "lampadalava/sensor/luminosidade"
 #define TOPICO_PUBLISH_MOVIMENTO "lampadalava/sensor/movimento"
 #define ID_MQTT "IoT_PUC_SG_mqtt" //id mqtt (para identificação de sessão)
+#define BROKER_MQTT "test.mosquitto.org"
+#define BROKER_PORT 1883 // Porta do Broker MQTT
 
-const char* BROKER_MQTT = "test.mosquitto.org";
-int BROKER_PORT = 1883; // Porta do Broker MQTT
-
-// celular wifi
-const char* SSID    = "AndroidAPT";
-const char* PASSWORD = "nfwb6809";
-
-// Variáveis e objetos globais
-WiFiClient espClient; // Cria o objeto espClient
-PubSubClient MQTT(espClient); // Instancia o Cliente MQTT passando o objeto espClient
+// Configuracao wifi
+#define SSID     "AndroidAPT"
+#define PASSWORD "nfwb6809"
 
 /*** SENSORES E CONTROLES ***/
 #define LED_COUNT 16 //Numero de pixels da led
@@ -32,21 +59,30 @@ PubSubClient MQTT(espClient); // Instancia o Cliente MQTT passando o objeto espC
 #define RELE 27 // rele
 #define pin 12 // LED
 
+/*** VARIAVEIS GLOBAIS ***/
 int luminosidade;
-int temperatura;
+float temperatura;
 int movimento;
 bool modo_automatico_ativado = true;
+bool sistema_ligado = true;
 
 unsigned long time_now;
 unsigned long time_start_mov = 0;
 unsigned long time_start_color = 0;
 unsigned long time_start_sensor = 0;
 unsigned long intervalo_pir = 300000;
-unsigned long intervalo_led_cor = 100;
+unsigned long intervalo_led_cor = 50;
 unsigned long intervalo_leitura_sensor = 1000;
-int cont = 0;
+int red = 0;
+int green = 0;
+int blue = 0;
 
-dht temp; //Variavel da temperatura
+// Objetos do MQTT
+WiFiClient espClient; // Cria o objeto espClient
+PubSubClient MQTT(espClient); // Instancia o Cliente MQTT passando o objeto espClient
+
+// Objeto dos sensores e atuadores
+DHT dht(SENSORTEMP, DHT11);
 Adafruit_NeoPixel strip(LED_COUNT, pin, NEO_GRB + NEO_KHZ800);// Cria um objeto de pixel da fita de LED
 
 /*** Prototypes ***/
@@ -57,15 +93,75 @@ void reconnectMQTT(void);
 void reconnectWiFi(void);
 void VerificaConexoesWiFIEMQTT(void);
 
+/**
+ * Desliga sistema
+ * 
+ * Configura o sistema para o modo desligado
+ */
 void desligar_sistema () {
+  sistema_ligado = false;
   digitalWrite (RELE, HIGH); //liga o RELE
   strip.clear();// Defina todas as cores dos pixels como preto (desligado)
   strip.show(); // Atualize a fita de LED com as novas cores 
 }
 
 /**
+ * Led Modo Automatico
+ * 
+ * Configura as cores da led quando estiver no modo automatico
+ */
+void led_modo_automatico () {
+  // Controla o tempo de cada cor
+  if (time_now - time_start_color >= intervalo_led_cor) {
+    time_start_color = time_now;
+
+    // Ajuste da luminosidade
+    int limite;
+    if (luminosidade > 3500) {
+      intervalo_led_cor = 100;
+      limite = 50;
+    } else {
+      intervalo_led_cor = 50;
+
+      if (luminosidade <= 2000) {
+        limite = 255;
+      } else if (luminosidade  <= 2500) {
+        limite = 200;
+      } else if (luminosidade <= 3000) {
+        limite = 150;
+      } else {
+        limite = 100;
+      }
+    }
+
+    // Ajuste na cor
+    if (blue < 0 || red < 0 || green < 0) {
+      red = 0;
+      green = 0;
+      blue = 0;
+    } else if (green < limite && blue == 0) {
+      green ++;
+    } else if (red > 0 && green == limite) {
+      red --;
+    } else if (red == 0 && blue < limite) {
+      blue ++;
+    } else if (red == 0 && green > 0) {
+      green --;
+    } else if (red < limite && blue == limite) {
+      red ++;
+    } else {
+      blue --;
+    }
+
+    //Atualiza a cor
+    strip.fill(strip.Color(red, green, blue));
+    strip.show();
+  }
+}
+
+/**
  Inicializa e conecta-se na rede WI-FI desejada
-*/
+ */
 void initWiFi (void) {
   delay(10);
   Serial.println("------Conexao WI-FI------");
@@ -77,55 +173,19 @@ void initWiFi (void) {
 }
 
 /**
-  Inicializa parâmetros de conexão MQTT(endereço do
-  broker, porta e inicializa a função de callback)
-*/
+ * Inicializa parâmetros de conexão MQTT(endereço do
+ * broker, porta e inicializa a função de callback)
+ */
 void initMQTT(void) {
   MQTT.setServer(BROKER_MQTT, BROKER_PORT);   //informa qual broker e porta deve ser conectado
-  MQTT.setCallback(mqtt_callback);            //atribui função de callback (função chamada quando qualquer informação de um dos tópicos subescritos chega)
-}
-
-
-int red = 0, green = 0, blue = 0;
-
-void led_modo_automatico () {
-  // Controla o tempo de cada cor
-  if (time_now - time_start_color >= intervalo_led_cor) {
-    time_start_color = time_now;
-
-    //Ajuste na cor
-    if (green < 255 && blue == 0) {
-      green ++;
-    } else if (red > 0 && green == 255) {
-      red --;
-    } else if (red == 0 && blue < 255) {
-      blue ++;
-    } else if (red == 0 && green > 0) {
-      green --;
-    } else if (red < 255 && blue == 255) {
-      red ++;
-    } else if (red == 255 && blue > 0) {
-      blue --;
-    }
-
-    //Atualiza a cor
-    strip.fill(strip.Color(red, green, blue));
-    strip.show();
-  }
-}
-
-int configuracao_cor [3];
-
-void led_modo_manual () {
-  strip.fill(strip.Color(configuracao_cor[0], configuracao_cor[1], configuracao_cor[2]));
-  strip.show();
+  MQTT.setCallback(mqtt_callback);          //atribui função de callback (função chamada quando qualquer informação de um dos tópicos subescritos chega)
 }
 
 /** 
   FUNÇÃO CALLBACK
   Esta função é chamada toda vez que uma informação de
   um dos tópicos subescritos chega)
-*/
+ */
 void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   String msg;
 
@@ -151,34 +211,57 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   } else if (msg.equals("A")) {
     modo_automatico_ativado = true;
   
-  } else if (msg.length() > 1) {
-    modo_automatico_ativado = false;
-    int indice = 0;
-    String num = "";
-
-    for (int i = 0; i < msg.length(); i++) {
-
-      if (msg.charAt(i) == ',') {
-        indice ++;
-        configuracao_cor[indice] = num.toInt();
-        num = "";
-      } else if (msg.charAt(i) != '[' && msg.charAt(i) != ']') {
-        num += msg.charAt(i);
-      }
-      
-    }
-
-    strip.fill(strip.Color(configuracao_cor[0], configuracao_cor[1], configuracao_cor[2]));
-    strip.show();
   } else {
-    Serial.println("Não identificou comando MQTT recebido.");
+    modo_automatico_ativado = false;
+
+    if (msg.equals("1")) {
+      // Amarelo
+      red = 244;
+      green =  255;
+      blue = 0;
+    } else if (msg.equals("2")) {
+      // Laranja
+      red = 255;
+      green =  100;
+      blue = 0;
+    } else if (msg.equals("3")) {
+      // Vermelho
+      red = 255;
+      green =  0;
+      blue = 0;
+    } else if (msg.equals("4")) {
+      // verde
+      red = 0;
+      green = 255;
+      blue = 0;
+    } else if (msg.equals("5")) {
+      // Azul
+      red = 0;
+      green = 0;
+      blue = 255;
+    } else if (msg.equals("6")) {
+      // Roxo
+      red = 119;
+      green = 0;
+      blue = 200;
+    } else if (msg.equals("7")) {
+      // Rosa
+      red = 237;
+      green =  48;
+      blue = 207;
+    }
+    // Verifica se o sistema esta ligado para atualizar a cor
+    if (sistema_ligado) {
+      strip.fill(strip.Color(red, green, blue));
+      strip.show();
+    }
   }
 }
 
 /**
   Reconecta-se ao broker MQTT (caso ainda não esteja conectado ou em caso de a conexão cair)
   em caso de sucesso na conexão ou reconexão, o subscribe dos tópicos é refeito.
-*/
+ */
 void reconnectMQTT(void) {
   while (!MQTT.connected()) {
     Serial.print("* Tentando se conectar ao Broker MQTT: ");
@@ -200,7 +283,7 @@ void reconnectMQTT(void) {
 
 /**
   Reconecta-se ao WiFi
-*/
+ */
 void reconnectWiFi(void) {
   //se já está conectado à rede WI-FI, nada é feito.
   //Caso contrário, são efetuadas tentativas de conexão
@@ -226,7 +309,7 @@ void reconnectWiFi(void) {
   Verifica o estado das conexões WiFI e ao broker MQTT.
   Em caso de desconexão (qualquer uma das duas), a conexão
   é refeita.
-*/
+ */
 void VerificaConexoesWiFIEMQTT(void) {
   if (!MQTT.connected()) {
     reconnectMQTT(); //se não há conexão com o Broker, a conexão é refeita
@@ -240,6 +323,7 @@ void setup() {
   pinMode(SENSORLUZ, INPUT); //DEFINE O PINO COMO ENTRADA
   pinMode(RELE, OUTPUT); //DEFINE O PINO COMO SAIDA
   pinMode(SENSORMOV, INPUT); //DEFINE O PINO COMO ENTRADA
+  dht.begin();
 
   //COMANDOS LED
   strip.begin(); // Inicialize a fita de LED
@@ -266,28 +350,45 @@ void loop() {
   if (time_now - time_start_sensor >= intervalo_leitura_sensor) {
     time_start_sensor = time_now;
 
-    //INFORMA O VALOR DO FOTORESISTOR
-    luminosidade = analogRead(SENSORLUZ);
-    Serial.println();
-    Serial.print("Valor do sensor de luminosidade = "); 
-    Serial.println(luminosidade);
-    sprintf(luminosidade_str, "%d", luminosidade);
-    MQTT.publish(TOPICO_PUBLISH_LUMINOSIDADE, luminosidade_str, 1);
+    if (sistema_ligado) {
+      // LUMINOSIDADE
+      // Leitura do fotoresistor
+      luminosidade = analogRead(SENSORLUZ);
 
-    //INFORMA O VALOR DO SENSOR DE TEMPERATURA
-    temp.read11(SENSORTEMP); //LÊ AS INFORMAÇÕES DO SENSOR
-    temperatura = temp.temperature;	
-    Serial.print("Valor do sensor de Temperatura = "); 
-    Serial.println(temperatura , 0);
-    sprintf (temperatura_str, "%d", temperatura);
-    MQTT.publish(TOPICO_PUBLISH_TEMPERATURA, temperatura_str, 1); 
+      // Exibe a luminosidade lida nomonitor serial
+      Serial.println();
+      Serial.print("Valor do sensor de luminosidade = "); 
+      Serial.println(luminosidade);
 
+      // Publica a luminosidade lida no broker
+      sprintf(luminosidade_str, "%d", luminosidade);
+      MQTT.publish(TOPICO_PUBLISH_LUMINOSIDADE, luminosidade_str, 1);
+      
+      // INFORMA O VALOR DO SENSOR DE TEMPERATURA
+      temperatura = dht.readTemperature();
+
+      // Testa se retorno é valido, caso contrário algo está errado.
+      if (!isnan(temperatura) && temperatura > 0) {
+        // Exibe a temperatura no monitor serial
+        Serial.print("Valor do sensor de Temperatura = "); 
+        Serial.print(temperatura);
+        Serial.println();
+
+        // Publica a temperatura no broker
+        sprintf (temperatura_str, "%.01f", temperatura);
+        MQTT.publish(TOPICO_PUBLISH_TEMPERATURA, temperatura_str, 1);
+      }
+    } else {
+      // Publica 0 caso o sistema estiver desligado
+      MQTT.publish(TOPICO_PUBLISH_LUMINOSIDADE, "0", 1);
+      MQTT.publish(TOPICO_PUBLISH_TEMPERATURA, "0", 1);
+    }
+    
     //INFORMA O VALOR DO SENSOR DE MOVIMENTO
     movimento = digitalRead(SENSORMOV);
     Serial.print("Movimento: "); 
     if (movimento == HIGH) {
       time_start_mov = time_now;
-      // time_start_color = time_now;
       MQTT.publish(TOPICO_PUBLISH_MOVIMENTO, "1", 1); 
       Serial.println("1");
     } else {
@@ -296,26 +397,25 @@ void loop() {
     }
   }
   
+  // Verifica se o sistema esta ligado
   if (time_now - time_start_mov <= intervalo_pir) {
+    sistema_ligado = true;
+
     // Controla o aquecedor
     if (temperatura <= 35) {
       // Liga o aquecedor
       digitalWrite (RELE, LOW);
-    } else if (temperatura >= 45) {
+    } else if (temperatura >= 60) {
       // Desliga o aquecedor
       digitalWrite (RELE, HIGH);
     }
     
     // Controla a led
-    if (luminosidade <= 1900) {
-      if (modo_automatico_ativado) {
-        led_modo_automatico();
-      } else {
-        led_modo_manual();
-      }
+    if (modo_automatico_ativado) {
+      led_modo_automatico();
     } else {
-      strip.clear();// Defina todas as cores dos pixels como preto (desligado)
-      strip.show(); // Atualize a fita de LED com as novas cores 
+      strip.fill(strip.Color(red, green, blue));
+      strip.show();
     }
   } else {
     desligar_sistema();
