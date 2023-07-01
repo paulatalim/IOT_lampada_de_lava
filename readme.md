@@ -1,6 +1,6 @@
 <div align="center">
     <h1> Lâmpada de Lava </h1>
-    <img alt="Imagem do hardware da lampada de lava" width="30%" src="./Fotos/Foto_lampada_de_lava.jpg"/>
+    <img alt="Montagem de fotos da lampada de lava" width="80%" src="./Fotos/montagem_fotos.jpg"/>
 </div>
 
 #
