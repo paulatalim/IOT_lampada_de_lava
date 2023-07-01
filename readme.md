@@ -1,7 +1,8 @@
 <div align="center">
     <h1> Lâmpada de Lava </h1>
-    <img alt="Montagem de fotos da lampada de lava" width="100%" src="./Fotos/montagem_fotos.jpg"/>
 </div>
+
+![Montagem de fotos da lampada de lava](./Fotos/montagem_fotos.jpg)
 
 #
 
@@ -72,9 +73,7 @@ Uma representação do hardware está disponível no tinkercad:
 
 ### Fluxograma
 
-<div align="center">
-    <img alt="Fluxograma do software" width="100%" src="./Fotos/fluxograma%20Lampada%20de%20lava.png"/>
-</div>
+![Fluxograma do software](./Fotos/fluxograma%20Lampada%20de%20lava.png)
 
 ### Programas Utilizados
 
@@ -103,10 +102,7 @@ Selecione as opções `Restore backup` > `Restore`, selecione o arquivo backup b
 
 ### Printscreen
 <div align="center">
-    <img alt="printscreen do mqttbox" width="80%" src="./Fotos/printscreen_mqttbox.jpg"/>
-    <br>
-    <img alt="printscreen do banco de dados" width="51%" src="./Fotos/printscreen_bd.jpg"/>
-    <img alt="printscreen do app" width="30%" src="./Fotos/printscreen_app.jpg"/>
+    <img alt="fotos do software" width="80%" src="./Fotos/montagem_foto_software.jpg"/>
 </div>
 
 ## Mais Detalhes
