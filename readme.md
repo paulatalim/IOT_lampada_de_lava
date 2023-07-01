@@ -1,6 +1,4 @@
-<div align="center">
-    <h1> Lâmpada de Lava </h1>
-</div>
+![header](https://capsule-render.vercel.app/api?type=waving&section=header&fontAlignY=40&color=9315c9&height=250&text=Lâmpada%20de%20Lava&fontSize=50)
 
 ![Montagem de fotos da lampada de lava](./Fotos/montagem_fotos.jpg)
 
