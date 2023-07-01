@@ -69,7 +69,21 @@ Uma representação do hardware está disponível no tinkercad:
 
 ### Fluxograma
 
+![Fluxograma do software](./Fotos/fluxograma%20Lampada%20de%20lava.png)
+
 ### Programas Utilizados
+
+#### Devices
+
+Para o código do hardware foi utilizado alinguagem C++ e desenvolvido no Arduino IDE.
+
+Para que o código funcione é necessario as bibliotecas:
+- [Adafruit_Sensor-master](./bibliotecas/Adafruit_Sensor-master.zip)
+- [DHT-sensor-library](./bibliotecas/DHT-sensor-library.zip)
+- [PubSubClient-2.8.0](./bibliotecas/PubSubClient-2.8.0.zip)
+- Adafruit_NeoPixel
+
+Veja o código do hardware produzido: [vizualizar código](./Listagem%20dos%20Programas/lampada_de_lava.ino)
 
 #### Bancos de Dados
 
@@ -81,18 +95,6 @@ Visualize o codigo em python que possibilita a conexao do ESP-32 com banco de da
 O aplicativo foi desenvolvido no MQTT DashBoard, caso queira ter o aplicativo, baixe ele na play store e o arquivo backup em seu celular ([vizualizar arquivo backup](./Listagem%20dos%20Programas/backup_app_MQTTDashBoard.mqttdash))
 
 Selecione as opções `Restore backup` > `Restore`, selecione o arquivo backup baixado e confirme nas opções `ok` > `Restart`.
-
-#### Código do Hardware
-
-Para o código do hardware foi utilizado alinguagem C++ e desenvolvido no Arduino IDE.
-
-Para que o código funcione é necessario as bibliotecas:
-- [Adafruit_Sensor-master](./bibliotecas/Adafruit_Sensor-master.zip)
-- [DHT-sensor-library](./bibliotecas/DHT-sensor-library.zip)
-- [PubSubClient-2.8.0](./bibliotecas/PubSubClient-2.8.0.zip)
-- Adafruit_NeoPixel
-
-Veja o código do hardware produzido: [vizualizar código](./Listagem%20dos%20Programas/lampada_de_lava.ino)
 
 ### Printscreen
 
