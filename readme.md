@@ -1,27 +1,60 @@
 # Lâmpada de Lava
 
-## Links para fazer a lampada
+![Imagem do hardware](./Fotos/Foto_lampada_de_lava.jpg)
 
-- [Manual do mundo (o liquido da lampada)](https://youtu.be/LcSW7O56B-0)
+## Sumário
+- [Sobre](#sobre-o-sistema)
+- [Funcionalidades](#funcionalidades)
+- Diagrama Eletrico
+- Programas utilizados
+- Inspiracoes
+- Fotos
+- Clonar projeto
+- [Créditos](#créditos)
+
+## Sobre
+Esse sistema foi uma atividade academica desenvolvida no 1º periodo de faculdade de Engenharia de Computação, com o principal objetivo aprender _________, utilizando a linguagem ______________.
+
+## Inspiracoes
+
 - [Playlist](https://www.youtube.com/playlist?list=PLz-Y5rwxaF8qEKzLQ9h6xIV0C33PYyxBU)
 
-## ESP 32 pinout
+## Funcionalidades
 
-![pinout](esp32_nodeMCU_pinout.jpg)
 
-## Tarefas
+## Hardware
 
-- [pdf das tarefas](orientacoes_do_trab.pdf)
-- [cronograma de entrega dos relatorios](cronograma.pdf)
+### Diagrama Eletrico
 
-## Codigos teste
 
-- [Sensor de movimento](./test/teste_pir.ino)
-- [Aquecedor de cartucho](./test/teste_aquecedor.ino)
-- [Codigo com tempo sem delay](./test/teste_tempo_sem_delay.ino)
-- [codigo do modulo de led](./test/teste_matrix_led.ino)
-- [video do cara explicando o modulo de leds](https://www.youtube.com/watch?v=VtIWN5SJDYo)
-
-## Tinkercad
+Uma representação do hardware está disponível no tinkercad:
 
 - [Link do projeto no tinkercad](https://www.tinkercad.com/things/4kXaNSLRbeD?sharecode=p3JFwybaUJIMXSC5MJte0VQfITPpRgQib_tJfDL0w-U)
+
+### Fotos do Hardware
+
+![Foto do circuito interno da lampada](./Fotos/Foto_circuito_interno.jpg)
+![Foto debaixo da lampada](./Fotos/Foto_debaixo_da_lampada.jpg)
+![Foto da lampada de lava](./Fotos/Foto_lampada_de_lava.jpg)
+
+
+## Clonar Projeto
+
+```
+$ git clone link
+```
+
+## Créditos
+
+### Integrantes do grupo
+
+- Ana Beatriz
+- Marcos Victor
+- Mariana Aram
+- Paula Talim
+- Yago Garzon
+
+### Professor orientador
+
+- Julio Coway
+
