@@ -6,13 +6,14 @@
 #
 
 ## Sumário
+
 - [Sobre](#sobre-o-sistema)
-- Inspiracoes
+- [Inspirações](#inspiracoes)
 - [Funcionalidades](#funcionalidades)
-- Hardware
-- Software
-- Mais detalhes
-- Clonar projeto
+- [Hardware](#hardware)
+- [Software](#software)
+- [Mais detalhes](#mais-detalhes)
+- [Clonar projeto](#clonar-projeto)
 - [Créditos](#créditos)
 
 ## Sobre
@@ -24,7 +25,7 @@ Essa lâmpada possui a habilidade de se autorregular, de acordo com o ambiente, 
 Apesar de tal lâmpada ser, popularmente, utilizado como um objeto de decoração, os conceitos utilizados para controlá-la podem ser replicados para outros aparelhos em uma casa automatizada. Portanto, nosso principal objetivo é criar um projeto visualmente atraente e altamente replicável, que possa ser usado como modelo para automação residencial. 
 
 
-## Inspiracoes
+## Inspirações
 
 A principal motivação para esse trabalho era fazer algo diferente e visualmente atraente. Apesar de não solucionar problema sociais, utiliza elementos facilmente aplicáveis a projetos de casas automatizadas, mas que não são regularmente vistos nesses projetos.
 
@@ -44,8 +45,15 @@ Veja os videos em que o projeto foi baseado:
 
 ## Hardware
 
-### Diagrama Eletrico
+### Diagrama Elétrico
 
+![Imagem do diagrama elétrico](./Diagrama%20El%C3%A9trico/Diagrama%20El%C3%A9trico.jpeg)
+
+*Legenda*
+
+![Legenda do digrama elétrico](./Diagrama%20El%C3%A9trico/Legenda.jpeg)
+
+*Mais detalhes*
 
 Uma representação do hardware está disponível no tinkercad:
 
@@ -69,14 +77,13 @@ Uma representação do hardware está disponível no tinkercad:
 
 ## Clonar Projeto
 
-    git clone https://github.com/Paula-Talim/IOT_lampada_de_lava.git
-
 ```
 git clone https://github.com/Paula-Talim/IOT_lampada_de_lava.git
 ```
 ```
 cd IOT_lampada_de_lava
 ```
+
 ## Mais Detalhes
 
 ## Créditos
