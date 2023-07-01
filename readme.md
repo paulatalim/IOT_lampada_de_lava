@@ -1,6 +1,6 @@
 # Lâmpada de Lava
 
-![Imagem do hardware](./Fotos/Foto_lampada_de_lava.jpg)
+<img align="center" alt="Imagem do hardware da lampada de lava" width="30%" src="./Fotos/Foto_lampada_de_lava.jpg"/>
 
 ## Sumário
 - [Sobre](#sobre-o-sistema)
