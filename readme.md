@@ -51,11 +51,12 @@ Veja os videos em que o projeto foi baseado:
 <div align="center">
     <img alt="Imagem do diagrama elétrico" width="80%" src="./Diagrama%20El%C3%A9trico/Diagrama%20El%C3%A9trico.jpeg"/>
 </div>
-<!-- ![Imagem do diagrama elétrico](./Diagrama%20El%C3%A9trico/Diagrama%20El%C3%A9trico.jpeg) -->
 
 *Legenda:*
 
-![Legenda do digrama elétrico](./Diagrama%20El%C3%A9trico/Legenda.jpeg)
+<div align="center">
+    <img alt="Legenda do digrama elétrico" width="80%" src="./Diagrama%20El%C3%A9trico/Legenda.jpeg"/>
+</div>
 
 *Mais detalhes:*
 
@@ -65,16 +66,7 @@ Uma representação do hardware está disponível no tinkercad:
 
 ### Fotos do Hardware
 
-<!-- <div style = "display: flex">
-    <div>
-        <img alt="Foto do circuito interno da lampada" width="30%" src="./Fotos/Foto_circuito_interno.jpg"/>
-        <br>
-        <img alt="Foto debaixo da lampada" width="30%" src="./Fotos/Foto_debaixo_da_lampada.jpg"/>
-    </div>
-    <div>
-        <img alt="Foto da lampada de lava" width="100%" src="./Fotos/Foto_lampada_de_lava.jpg"/>
-    </div>
-</div> -->
+![imagens do harware](./Fotos/montagem_fotos_hardware.jpg)
 
 ## Software
 
