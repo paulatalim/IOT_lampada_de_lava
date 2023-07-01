@@ -107,6 +107,11 @@ Selecione as opções `Restore backup` > `Restore`, selecione o arquivo backup b
 
 ## Mais Detalhes
 
+Para mais detalhes desse projeto veja a documentação e os relatorios produzidos ao longo do trabalho.
+
+- [Ver documentação](./Relatorios/Documenta%C3%A7%C3%A3o.pdf)
+- [Ver relatorios](./Relatorios)
+
 ## Clonar Projeto
 
 ```
