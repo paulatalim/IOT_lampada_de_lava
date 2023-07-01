@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&section=header&fontAlignY=40&color=9315c9&height=250&text=Lâmpada%20de%20Lava&fontSize=50)
+![header](https://capsule-render.vercel.app/api?type=waving&section=header&fontAlignY=35&color=9315c9&height=200&text=Lâmpada%20de%20Lava&fontSize=50)
 
 ![Montagem de fotos da lampada de lava](./Fotos/montagem_fotos.jpg)
 
