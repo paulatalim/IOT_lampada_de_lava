@@ -97,10 +97,12 @@ O aplicativo foi desenvolvido no MQTT DashBoard, caso queira ter o aplicativo, b
 Selecione as opções `Restore backup` > `Restore`, selecione o arquivo backup baixado e confirme nas opções `ok` > `Restart`.
 
 ### Printscreen
-
-![printscreen do mqttbox](./Fotos/printscreen_mqttbox.jpg)
-![printscreen do banco de dados](./Fotos/printscreen_bd.jpg)
-![printscreen do app](./Fotos/printscreen_app.jpg)
+<div align="center">
+    <img alt="printscreen do mqttbox" width="80%" src="./Fotos/printscreen_mqttbox.jpg"/>
+    <br>
+    <img alt="printscreen do banco de dados" width="51%" src="./Fotos/printscreen_bd.jpg"/>
+    <img alt="printscreen do app" width="30%" src="./Fotos/printscreen_app.jpg"/>
+</div>
 
 ## Mais Detalhes
 
