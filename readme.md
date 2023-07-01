@@ -47,7 +47,11 @@ Veja os videos em que o projeto foi baseado:
 
 ### Diagrama Elétrico
 
-![Imagem do diagrama elétrico](./Diagrama%20El%C3%A9trico/Diagrama%20El%C3%A9trico.jpeg)
+
+<div align="center">
+    <img alt="Imagem do diagrama elétrico" width="80%" src="./Diagrama%20El%C3%A9trico/Diagrama%20El%C3%A9trico.jpeg"/>
+</div>
+<!-- ![Imagem do diagrama elétrico](./Diagrama%20El%C3%A9trico/Diagrama%20El%C3%A9trico.jpeg) -->
 
 *Legenda:*
 
@@ -61,15 +65,24 @@ Uma representação do hardware está disponível no tinkercad:
 
 ### Fotos do Hardware
 
-![Foto do circuito interno da lampada](./Fotos/Foto_circuito_interno.jpg)
-![Foto debaixo da lampada](./Fotos/Foto_debaixo_da_lampada.jpg)
-![Foto da lampada de lava](./Fotos/Foto_lampada_de_lava.jpg)
+<!-- <div style = "display: flex">
+    <div>
+        <img alt="Foto do circuito interno da lampada" width="30%" src="./Fotos/Foto_circuito_interno.jpg"/>
+        <br>
+        <img alt="Foto debaixo da lampada" width="30%" src="./Fotos/Foto_debaixo_da_lampada.jpg"/>
+    </div>
+    <div>
+        <img alt="Foto da lampada de lava" width="100%" src="./Fotos/Foto_lampada_de_lava.jpg"/>
+    </div>
+</div> -->
 
 ## Software
 
 ### Fluxograma
 
-![Fluxograma do software](./Fotos/fluxograma%20Lampada%20de%20lava.png)
+<div align="center">
+    <img alt="Fluxograma do software" width="80%" src="./Fotos/fluxograma%20Lampada%20de%20lava.png"/>
+</div>
 
 ### Programas Utilizados
 
