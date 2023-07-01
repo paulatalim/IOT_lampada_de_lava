@@ -133,4 +133,4 @@ cd IOT_lampada_de_lava
 
 - Julio Coway
 
-![footer](https://capsule-render.vercel.app/api?type=waving&section=footer&color=9315c9&height=200)
+![footer](https://capsule-render.vercel.app/api?type=waving&section=footer&color=9315c9&height=150)
