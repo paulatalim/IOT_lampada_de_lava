@@ -1,6 +1,6 @@
 <div align="center">
     <h1> Lâmpada de Lava </h1>
-    <img alt="Montagem de fotos da lampada de lava" width="80%" src="./Fotos/montagem_fotos.jpg"/>
+    <img alt="Montagem de fotos da lampada de lava" width="100%" src="./Fotos/montagem_fotos.jpg"/>
 </div>
 
 #
@@ -73,7 +73,7 @@ Uma representação do hardware está disponível no tinkercad:
 ### Fluxograma
 
 <div align="center">
-    <img alt="Fluxograma do software" width="80%" src="./Fotos/fluxograma%20Lampada%20de%20lava.png"/>
+    <img alt="Fluxograma do software" width="100%" src="./Fotos/fluxograma%20Lampada%20de%20lava.png"/>
 </div>
 
 ### Programas Utilizados
