@@ -4,10 +4,12 @@
 
 ## Sumário
 - [Sobre](#sobre-o-sistema)
-- [Funcionalidades](#funcionalidades)
-- Diagrama Eletrico
-- Programas utilizados
 - Inspiracoes
+- [Funcionalidades](#funcionalidades)
+- Hardware
+- Software
+- Programas utilizados
+
 - Fotos
 - Clonar projeto
 - [Créditos](#créditos)
@@ -37,6 +39,15 @@ Uma representação do hardware está disponível no tinkercad:
 ![Foto debaixo da lampada](./Fotos/Foto_debaixo_da_lampada.jpg)
 ![Foto da lampada de lava](./Fotos/Foto_lampada_de_lava.jpg)
 
+## Software
+
+### Programas utilizados
+
+### Printscreen
+
+![printscreen do mqttbox](./Fotos/printscreen_mqttbox.jpg)
+![printscreen do banco de dados](./Fotos/printscreen_bd.jpg)
+![printscreen do app](./Fotos/printscreen_app.jpg)
 
 ## Clonar Projeto
 
