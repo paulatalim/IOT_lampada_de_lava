@@ -49,11 +49,11 @@ Veja os videos em que o projeto foi baseado:
 
 ![Imagem do diagrama elétrico](./Diagrama%20El%C3%A9trico/Diagrama%20El%C3%A9trico.jpeg)
 
-*Legenda*
+*Legenda:*
 
 ![Legenda do digrama elétrico](./Diagrama%20El%C3%A9trico/Legenda.jpeg)
 
-*Mais detalhes*
+*Mais detalhes:*
 
 Uma representação do hardware está disponível no tinkercad:
 
@@ -67,7 +67,32 @@ Uma representação do hardware está disponível no tinkercad:
 
 ## Software
 
-### Programas utilizados
+### Fluxograma
+
+### Programas Utilizados
+
+#### Bancos de Dados
+
+Para o banco de dados foi utilizado o postgree
+Visualize o codigo em python que possibilita a conexao do ESP-32 com banco de dados: [ver código](./Listagem%20dos%20Programas/bd/)
+
+#### Aplicativo
+
+O aplicativo foi desenvolvido no MQTT DashBoard, caso queira ter o aplicativo, baixe ele na play store e o arquivo backup em seu celular ([vizualizar arquivo backup](./Listagem%20dos%20Programas/backup_app_MQTTDashBoard.mqttdash))
+
+Selecione as opções `Restore backup` > `Restore`, selecione o arquivo backup baixado e confirme nas opções `ok` > `Restart`.
+
+#### Código do Hardware
+
+Para o código do hardware foi utilizado alinguagem C++ e desenvolvido no Arduino IDE.
+
+Para que o código funcione é necessario as bibliotecas:
+- [Adafruit_Sensor-master](./bibliotecas/Adafruit_Sensor-master.zip)
+- [DHT-sensor-library](./bibliotecas/DHT-sensor-library.zip)
+- [PubSubClient-2.8.0](./bibliotecas/PubSubClient-2.8.0.zip)
+- Adafruit_NeoPixel
+
+Veja o código do hardware produzido: [vizualizar código](./Listagem%20dos%20Programas/lampada_de_lava.ino)
 
 ### Printscreen
 
@@ -88,7 +113,7 @@ cd IOT_lampada_de_lava
 
 ## Créditos
 
-### Integrantes do grupo
+### Integrantes do Grupo
 
 - Ana Beatriz
 - Marcos Victor
@@ -96,7 +121,7 @@ cd IOT_lampada_de_lava
 - Paula Talim
 - Yago Garzon
 
-### Professor orientador
+### Professor Orientador
 
 - Julio Coway
 
