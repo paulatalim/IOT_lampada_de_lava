@@ -7,8 +7,8 @@
 
 ## Sumário
 
-- [Sobre](#sobre-o-sistema)
-- [Inspirações](#inspiracoes)
+- [Sobre](#sobre)
+- [Inspirações](#inspirações)
 - [Funcionalidades](#funcionalidades)
 - [Hardware](#hardware)
 - [Software](#software)
@@ -102,6 +102,8 @@ Selecione as opções `Restore backup` > `Restore`, selecione o arquivo backup b
 ![printscreen do banco de dados](./Fotos/printscreen_bd.jpg)
 ![printscreen do app](./Fotos/printscreen_app.jpg)
 
+## Mais Detalhes
+
 ## Clonar Projeto
 
 ```
@@ -110,8 +112,6 @@ git clone https://github.com/Paula-Talim/IOT_lampada_de_lava.git
 ```
 cd IOT_lampada_de_lava
 ```
-
-## Mais Detalhes
 
 ## Créditos
 
