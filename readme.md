@@ -8,21 +8,29 @@
 - [Funcionalidades](#funcionalidades)
 - Hardware
 - Software
-- Programas utilizados
-
-- Fotos
 - Clonar projeto
 - [Créditos](#créditos)
 
 ## Sobre
-Esse sistema foi uma atividade academica desenvolvida no 1º periodo de faculdade de Engenharia de Computação, com o principal objetivo aprender _________, utilizando a linguagem ______________.
+Esse sistema foi uma atividade academica desenvolvida no 1º periodo de faculdade de Engenharia de Computação, com o principal objetivo aprender _________, utilizando a linguagem 
 
 ## Inspiracoes
+
+A principal motivação para esse trabalho era fazer algo diferente e visualmente atraente. Apesar de não solucionar problema sociais, utiliza elementos facilmente aplicáveis a projetos de casas automatizadas, mas que não são regularmente vistos nesses projetos.
+
+Veja os videos em que o projeto foi baseado:
 
 - [Playlist](https://www.youtube.com/playlist?list=PLz-Y5rwxaF8qEKzLQ9h6xIV0C33PYyxBU)
 
 ## Funcionalidades
 
+- Controle de luminosidade da LED, através de um sensor de luminosidade
+- Controle da cor da LED, através de um aplicativo
+- Controle de ligar e desligar no aplicativo
+- Após um tempo determinado sem a detecção de movimento, o sistema desligar
+- Controle do aquecedor de cartucho 3D com a temperatura lida pelo sensor
+- Publicação dos dados lidos pelos sensores em um Banco de dados e em um aplicativo
+- Armazenamento dos comandos lidos no Banco de dados
 
 ## Hardware
 
@@ -52,7 +60,10 @@ Uma representação do hardware está disponível no tinkercad:
 ## Clonar Projeto
 
 ```
-$ git clone link
+git clone https://github.com/Paula-Talim/IOT_lampada_de_lava.git
+```
+```
+cd IOT_lampada_de_lava
 ```
 
 ## Créditos
