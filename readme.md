@@ -123,14 +123,14 @@ cd IOT_lampada_de_lava
 
 ### Integrantes do Grupo
 
-- Ana Beatriz
-- Marcos Victor
-- Mariana Aram
-- Paula Talim
-- Yago Garzon
+- Ana Beatriz Santos de Oliveira
+- [Marcos Victor](https://www.linkedin.com/in/marcos-victor-5b45a91a4/)
+- [Mariana Aram](https://www.linkedin.com/in/mariana-aram-silva-a766b623b/)
+- [Paula Talim](https://www.linkedin.com/in/paulatalim/)
+- [Yago Garzon](https://www.linkedin.com/in/yago-garzon-chaves-7b57451b3/)
 
 ### Professor Orientador
 
-- Julio Coway
+- [Julio Coway](https://www.linkedin.com/in/julio-conway-d-sc-09092819/)
 
 ![footer](https://capsule-render.vercel.app/api?type=waving&section=footer&color=9315c9&height=150)
