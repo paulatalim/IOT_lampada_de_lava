@@ -113,7 +113,7 @@ Para mais detalhes desse projeto veja a documentação e os relatorios produzido
 ## Clonar Projeto
 
 ```
-git clone https://github.com/Paula-Talim/IOT_lampada_de_lava.git
+git clone https://github.com/paulatalim/IOT_lampada_de_lava.git
 ```
 ```
 cd IOT_lampada_de_lava
